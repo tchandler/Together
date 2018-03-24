@@ -11,7 +11,7 @@ const HEIGHT = window.innerHeight - 20;
 function setupRenderer() {
     const renderer = new WebGLRenderer(WIDTH, HEIGHT);
     console.log(renderer.screen.width);
-    renderer.backgroundColor = 0xF1F1F1;
+    renderer.backgroundColor = 0x121212;
     const canvas = document.querySelector('canvas');
     if (canvas) {
         canvas.parentElement.removeChild(canvas);
@@ -37,12 +37,12 @@ const renderer = setupRenderer();
 // const stage = createGrid();
 const stage = new Container();
 
-const togs = generateTogs(200);
-togs.forEach(sprite => stage.addChild(sprite.sprite));
+const togs = generateTogs(500);
+togs.forEach(tog => tog.addTo(stage));
 
 
 function render() {
-    togs.forEach(tog => tog.step());
+    togs.forEach(tog => tog.step(renderer));
     renderer.render(stage);
     requestAnimationFrame(render);
 }
