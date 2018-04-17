@@ -93,26 +93,29 @@ export default class Tog {
 
         dy -= this.getJumpOffset();
 
-        let newX = x + dx;
-        let newY = y + dy;
-
-        if (newX > this.xWrap + this.sprite.width) {
-            newX = 0;
-        } else if (newX < 0 - this.sprite.width) {
-            newX = this.xWrap - this.sprite.width;
-        }
-
-        if (newY > this.yWrap + this.sprite.height) {
-            newY = 0;
-        } else if (newY < 0 - this.sprite.height) {
-            newY = this.yWrap - this.sprite.height;
-        }
+        let { newX, newY } = this.checkWrap(x + dx, y + dy);
 
         return {
             x: newX,
             y: newY
         };
     }
+
+  private checkWrap(newX: number, newY: number) {
+    if (newX > this.xWrap + this.sprite.width) {
+      newX = 0;
+    }
+    else if (newX < 0 - this.sprite.width) {
+      newX = this.xWrap - this.sprite.width;
+    }
+    if (newY > this.yWrap + this.sprite.height) {
+      newY = 0;
+    }
+    else if (newY < 0 - this.sprite.height) {
+      newY = this.yWrap - this.sprite.height;
+    }
+    return { newX, newY };
+  }
 
     private determineNewHeading(currentPosition, currentHeading, mousePosition) {
         let { x, y } = currentPosition;
