@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import { WebGLRenderer, Graphics, Container, WebGLRendererOptions } from 'pixi.js';
 import Tog from './Tog';
 
