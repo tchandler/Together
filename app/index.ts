@@ -1,4 +1,4 @@
-import { WebGLRenderer, Graphics, Container } from 'pixi.js';
+import { WebGLRenderer, Graphics, Container, WebGLRendererOptions } from 'pixi.js';
 import Tog from './Tog';
 
 const RED = 0xFF0000;
@@ -9,9 +9,10 @@ const WIDTH = window.innerWidth - 20;
 const HEIGHT = window.innerHeight - 20;
 
 function setupRenderer() {
-    const renderer = new WebGLRenderer(WIDTH, HEIGHT);
-    console.log(renderer.screen.width);
-    renderer.backgroundColor = 0x121212;
+    const renderOptions: WebGLRendererOptions = {
+        transparent: true
+    }
+    const renderer = new WebGLRenderer(WIDTH, HEIGHT, renderOptions);
     const canvas = document.querySelector('canvas');
     if (canvas) {
         canvas.parentElement.removeChild(canvas);
