@@ -21,6 +21,8 @@ export default class Tog {
     private yWrap: number;
     private framesToSkip: number = 0;
     private skipChance: number = 0.75;
+    private inclination: {x: number, y: number};
+    private pep: number;
 
     private jumpOffset = this.jumpPhase();
 
@@ -35,6 +37,13 @@ export default class Tog {
         this.createSprite(x, y);
 
         this.skipChance = Math.random();
+
+        this.inclination = {
+            x: _.random(0.9, 1.1, true),
+            y: _.random(0.9, 1.1, true)
+    }
+
+        this.pep = _.random(0.75, 1.75, true)
     }
 
     public addTo(container: Container): void {
@@ -89,7 +98,11 @@ export default class Tog {
                 mousePosition
             );
 
-        dy -= this.getJumpOffset();
+        let { x: ix, y: iy } = this.inclination;
+
+        dx = dx * ix * this.pep; 
+
+        dy = (dy * iy - this.getJumpOffset()) * this.pep;
 
         let { newX, newY } = this.checkWrap(x + dx, y + dy);
 
