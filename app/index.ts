@@ -24,7 +24,7 @@ function setupRenderer() {
 
 function generateTogs(population: number) {
     const togs = [];
-    for (let i = 0; i < population; i++) {
+    for (let i = 1; i < population; i++) {
         const x = Math.floor(Math.random() * WIDTH) - 5;
         const y = Math.floor(Math.random() * HEIGHT) - 5;
         const heading = Math.floor(Math.random() * 4);
