@@ -1,8 +1,8 @@
-import { WebGLRenderer, Graphics, Container, utils } from "pixi.js";
+import { WebGLRenderer, Graphics, Container } from "pixi.js";
+import * as _ from 'lodash';
 
-const width = 5;
-const height = 8;
-const GREEN = 0x00FF00;
+const WIDTH = 5;
+const HEIGHT = 8;
 
 const getHeading = () => {
     return {
@@ -71,13 +71,13 @@ export default class Tog {
         this.sprite = new Graphics();
         this.sprite.cacheAsBitmap = true;
         this.sprite.interactive = true;
-        this.sprite.hitArea = new PIXI.Rectangle(0, 0, width * 1.2, height * 1.2);
+        this.sprite.hitArea = new PIXI.Rectangle(0, 0, WIDTH * 1.2, HEIGHT * 1.2);
         this.sprite.on('mouseover', mouseData => {
             this.teleport();
         });
         this.sprite.moveTo(x, y)
             .beginFill(this.color)
-            .drawRect(0, 0, width, height)
+            .drawRect(0, 0, WIDTH, HEIGHT)
             .endFill();
     }
 
