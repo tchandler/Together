@@ -4,14 +4,12 @@ const width = 5;
 const height = 8;
 const GREEN = 0x00FF00;
 
-const HEADINGS = [
-    { x: 0, y: 1 },
-    { x: 1, y: 0 },
-    { x: 0, y: -1 },
-    { x: -1, y: 0 }
-]
-
-const getHeading = (index: number) => ({...HEADINGS[index]}) 
+const getHeading = () => {
+    return {
+        x: _.random(-1, 1, true),
+        y: _.random(-1, 1, true)
+    };
+}
 
 export default class Tog {
     public position: {x: number, y: number};
@@ -29,7 +27,7 @@ export default class Tog {
     public constructor(x: number, y: number, heading: number, xWrap: number, yWrap: number) {
         this.position = {x, y};
 
-        this.heading = getHeading(heading);
+        this.heading = getHeading();
 
         this.xWrap = xWrap;
         this.yWrap = yWrap;
@@ -165,7 +163,7 @@ export default class Tog {
         const shouldReconsider = Math.random() < this.skipChance;
         if (shouldReconsider && !this.heading.chase) {
             this.framesToSkip = 10 + Math.floor(Math.random() * 30);
-            this.heading = getHeading(Math.floor(Math.random() * HEADINGS.length));
+            this.heading = getHeading();
         }
     }
     
