@@ -60,18 +60,18 @@ export default class Tog {
     }
 
     private createSprite(x: number, y: number) {
-        const color = Math.floor(Math.random() * 0xFFFFFF);
+        this.color = Math.floor(Math.random() * 0xFFFFFF);
         this.sprite = new Graphics();
-        this.sprite.moveTo(x, y)
-            .beginFill(color)
-            .drawRect(0, 0, width, height)
-            .endFill();
         this.sprite.cacheAsBitmap = true;
         this.sprite.interactive = true;
         this.sprite.hitArea = new PIXI.Rectangle(0, 0, width * 1.2, height * 1.2);
         this.sprite.on('mouseover', mouseData => {
             this.teleport();
         });
+        this.sprite.moveTo(x, y)
+            .beginFill(this.color)
+            .drawRect(0, 0, width, height)
+            .endFill();
     }
 
     private teleport() {
