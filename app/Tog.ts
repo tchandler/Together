@@ -79,7 +79,13 @@ export default class Tog {
         this.sprite.moveTo(x, y)
             .beginFill(this.color)
             .drawRect(0, 0, WIDTH, HEIGHT)
+            .drawRect(-3, 2, 3, 1) // Left Arm
+            .drawRect(WIDTH, 2, 3, 1) // Right Arm
+            .drawRect(1, HEIGHT, 1, 3) // Left Arm
+            .drawRect(3, HEIGHT, 1, 3) // Right Arm
+            .drawRect(1, -3, 3, 3) // Head
             .endFill();
+            
     }
 
     private soar() {
